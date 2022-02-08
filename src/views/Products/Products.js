@@ -11,6 +11,7 @@ import CardBody from "components/Card/CardBody.js";
 import MaterialTable from "material-table";
 import {AddOrEditProductDialog} from "./AddOrEditProductDialog";
 import axios from "axios";
+import {defaultImageFolder} from "../../index";
 
 export default function Products() {
     const isCancelled = React.useRef(false);
@@ -25,7 +26,7 @@ export default function Products() {
                     <img style={{
                         width: 120,
                         height: 60
-                    }} src={`http://localhost:3000${data.image}`} alt="preview"/>
+                    }} src={`${defaultImageFolder}${data.image}`} alt="preview"/>
                 );
             }
         },

@@ -1,6 +1,7 @@
 import React, {useMemo, useState} from "react";
 import {useDropzone} from "react-dropzone";
 import FileView from "../FileView/FileView";
+import {defaultImageFolder} from "../../index";
 
 export default function DropZone({onChange, value, error, helperText, accept, multiple}) {
     const [files, setFiles] = useState([]);
@@ -117,7 +118,7 @@ console.log({onChange, value, error, helperText, accept, multiple})
                 {files.length <= 0 && value && <div style={thumb}>
                     <div style={thumbInner}>
                         <img
-                            src={value}
+                            src={defaultImageFolder + value}
                             style={img}
                             alt="preview"/>                    </div>
                 </div>}

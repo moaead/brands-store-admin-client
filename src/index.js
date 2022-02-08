@@ -32,10 +32,12 @@ const hist = createBrowserHistory();
 //axios.defaults.baseURL = "http://37.8.123.240:5000/admin";
 //axios.defaults.baseURL = "http://localhost:5000/api";
 //axios.defaults.baseURL = "https://nofeedo.me:5000/admin";
+const baseUrl = "https://brandsstore.co:8080";
 if (process.env.NODE_ENV && process.env.NODE_ENV !== 'development') {
-    axios.defaults.baseURL = "https://brandsstore.co:8080";
+    axios.defaults.baseURL = baseUrl;
 }
 axios.defaults.withCredentials = true;
+export const defaultImageFolder = process.env.NODE_ENV && process.env.NODE_ENV !== 'development' ? baseUrl  : "";
 axios.interceptors.response.use(response => {
     return response;
 }, err => {
