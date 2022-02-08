@@ -32,6 +32,9 @@ const hist = createBrowserHistory();
 //axios.defaults.baseURL = "http://37.8.123.240:5000/admin";
 //axios.defaults.baseURL = "http://localhost:5000/api";
 //axios.defaults.baseURL = "https://nofeedo.me:5000/admin";
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    axios.defaults.baseURL = "https://brandsstore.co:8080";
+}
 axios.defaults.withCredentials = true;
 axios.interceptors.response.use(response => {
     return response;
