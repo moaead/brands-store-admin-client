@@ -9,7 +9,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import {useDropzone} from "react-dropzone";
 import ReactEditor from "../../components/ReactEditor/ReactEditor";
 import DropZone from "../../components/DropZone/DropZone";
-import {Grid, MenuItem, Select} from "@material-ui/core";
+import {FormControl, Grid, InputLabel, MenuItem, Select} from "@material-ui/core";
 import * as yup from 'yup';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers';
@@ -24,6 +24,7 @@ export function AddOrEditProductDialog({open, data, handleClose, onSubmit}) {
         name: yup.string().required(),
         arabicName: yup.string().required().nullable(),
         productCategoryId: yup.string().required(),
+        companyId: yup.string().required(),
         image: yup.string().nullable().required("Required"),
     });
 
@@ -109,28 +110,71 @@ export function AddOrEditProductDialog({open, data, handleClose, onSubmit}) {
                                 name="productCategoryId"
                                 control={control}
                                 defaultValue={null}
-                                render={({onChange, value}) => <Select
-                                    onChange={e => {
-                                        onChange(e.target.value)
-                                    }}
-                                    value={value}
-                                    autoFocus
-                                    name="productCategoryId"
-                                    id="productCategoryId"
-                                    label="Category"
-                                    type="productCategoryId"
-                                    error={!!errors.productCategoryId}
-                                    helperText={errors.productCategoryId && errors.productCategoryId.message}
-                                    fullWidth
-                                >
-                                    {categories.map(t => (
-                                        <MenuItem key={t.id} value={t.id}>{t.name}</MenuItem>
-                                    ))}
-                                </Select>
+                                render={({onChange, value}) => <FormControl fullWidth>
+                                    {!value && <InputLabel>Category</InputLabel>}
+                                    <Select
+                                        onChange={e => {
+                                            onChange(e.target.value)
+                                        }}
+                                        value={value}
+                                        placeholder="Category"
+                                        autoFocus
+                                        name="productCategoryId"
+                                        id="productCategoryId"
+                                        label="Category"
+                                        type="productCategoryId"
+                                        error={!!errors.productCategoryId}
+                                        helperText={errors.productCategoryId && errors.productCategoryId.message}
+                                        fullWidth
+                                    >
+                                        {categories.map(t => (
+                                            <MenuItem key={t.id} value={t.id}>{t.name}</MenuItem>
+                                        ))}
+                                    </Select>
+                                </FormControl>
                                 }
                             />
 
-
+                        </Grid>
+                        <Grid item>
+                            <Controller
+                                name="companyId"
+                                control={control}
+                                defaultValue={null}
+                                render={({onChange, value}) =>
+                                    <FormControl fullWidth>
+                                        {!value && <InputLabel>Company</InputLabel>}
+                                        <Select
+                                        onChange={e => {
+                                            onChange(e.target.value)
+                                        }}
+                                        value={value}
+                                        autoFocus
+                                        placeholder="Company"
+                                        name="companyId"
+                                        id="companyId"
+                                        label="Company"
+                                        type="companyId"
+                                        error={!!errors.companyId}
+                                        helperText={errors.companyId && errors.companyId.message}
+                                        fullWidth
+                                    >
+                                        {[{
+                                            id: 1,
+                                            name: "Ulker"
+                                        }, {
+                                            id: 2,
+                                            name: "Jouy & Co"
+                                        }, {
+                                            id: 3,
+                                            name: "Twist and Drink"
+                                        }].map(t => (
+                                            <MenuItem key={t.id} value={t.id}>{t.name}</MenuItem>
+                                        ))}
+                                    </Select>
+                                    </FormControl>
+                                }
+                            />
                         </Grid>
                         <Grid item>
                             <Controller
