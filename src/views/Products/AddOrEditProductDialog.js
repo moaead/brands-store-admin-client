@@ -17,6 +17,7 @@ import {EditorState, convertToRaw, convertFromHTML, ContentState} from 'draft-js
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import axios from "axios";
+import FormCheckbox from "../../components/FormInputs/FormCheckbox";
 
 export function AddOrEditProductDialog({open, data, handleClose, onSubmit}) {
     let schema = yup.object().shape({
@@ -176,6 +177,20 @@ export function AddOrEditProductDialog({open, data, handleClose, onSubmit}) {
                                 }
                             />
                         </Grid>
+                        <Grid item>
+
+                            <FormCheckbox
+                                register={register}
+                                setValue={setValue}
+                                autoFocus
+                                name="isHidden"
+                                id="isHidden"
+                                title="Hidden"
+                                fullWidth
+                                initialValue={data.isHidden}
+                            />
+                        </Grid>
+
                         <Grid item>
                             <Controller
                                 name="image"

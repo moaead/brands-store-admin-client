@@ -20,6 +20,7 @@ export default function Products() {
         {title: 'Bar Code', field: 'barCode'},
         {title: 'Name', field: 'name'},
         {title: 'Arabic Name', field: 'arabicName'},
+        {title: 'Hidden', field: 'isHidden', render: data => data.isHidden ? "Yes" : "No"},
         {
             title: 'Image', field: 'image', render: (data) => {
                 return (
